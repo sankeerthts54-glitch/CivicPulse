@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Feedback: anyone can create, only authenticated users can read
+    match /feedback/{feedbackId} {
+      allow create: if true;
+      allow read: if request.auth != null;
+      allow update: if false; // only Cloud Functions update
+      allow delete: if false;
+    }
+    // Recommendations: read-only for authenticated users
+    match /recommendations/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+  }
+}
