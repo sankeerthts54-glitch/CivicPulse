@@ -6,7 +6,7 @@ import { Translate } from "@google-cloud/translate/build/src/v2";
 import { v4 as uuidv4 } from "uuid";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
 
 // Translation client initialization (optional for MVP if keys are tricky to set up on Vercel)
 // If translation fails, we fallback to just passing the raw text to Gemini.
